@@ -6,13 +6,13 @@
 /*   By: nop_o <nop_o@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:04 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/02 22:24:06 by nop_o            ###   ########.fr       */
+/*   Updated: 2025/12/03 18:02:16 by nop_o            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	is_id_invalid(unsigned long nb)
+int	is_id_invalid(unsigned long long nb)
 {
 	char	*nbr;
 	int		len;
@@ -20,14 +20,22 @@ int	is_id_invalid(unsigned long nb)
 
 	nbr = ft_itoa(nb);
 	len = ft_strlen(nbr);
-	i = 0;
-	while (i < len)
+	if (len % 2 == 1)
 	{
-		if (nbr[i] != nbr[len - 1])
-			return (0);
-		i++;
-		len--;
+		free(nbr);
+		return (0);
 	}
+	i = 0;
+	while (i < len / 2)
+	{
+		if (nbr[i] != nbr[(len / 2) + i])
+		{
+			free(nbr);
+			return (0);
+		}
+		i++;
+	}
+	free(nbr);
 	return (1);
 }
 

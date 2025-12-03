@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 09:05:22 by adamez-f          #+#    #+#             */
-/*   Updated: 2025/12/02 22:26:27 by nop_o            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:47:22 by nop_o            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_power(int nb, int pow)
 	return (result);
 }
 
-static char	*fill_itoa(unsigned long nb, int pos, int size, char *itoa)
+static char	*fill_itoa(unsigned long long nb, int pos, int size, char *itoa)
 {
 	int		helper;
 
@@ -42,7 +42,7 @@ static char	*fill_itoa(unsigned long nb, int pos, int size, char *itoa)
 	return (itoa);
 }
 
-static int	get_len(unsigned long n)
+static int	get_len(unsigned long long n)
 {
 	int	len;
 
@@ -55,7 +55,7 @@ static int	get_len(unsigned long n)
 	return (len);
 }
 
-char	*ft_itoa(unsigned long n)
+char	*ft_itoa(unsigned long long n)
 {
 	int		i;
 	int		len;
@@ -69,15 +69,3 @@ char	*ft_itoa(unsigned long n)
 	itoa = fill_itoa(n, i, len, itoa);
 	return (itoa);
 }
-
-/*
-int	main(void)
-{
-	char *s;
-
-	s = ft_itoa(0);
-	__builtin_printf("nb : 0\n");
-	__builtin_printf("%s\n", s);
-	free(s);
-	return (0);
-}*/

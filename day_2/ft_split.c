@@ -6,12 +6,11 @@
 /*   By: nop_o <nop_o@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 15:33:41 by adamez-f          #+#    #+#             */
-/*   Updated: 2025/12/02 22:22:24 by nop_o            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:58:30 by nop_o            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdint.h>
 
 static int	get_word_len(const char *s, int start, char c)
 {
@@ -34,7 +33,7 @@ static int	get_word_count(const char *s, char c)
 	{
 		while (s[i] && s[i] == c)
 			i++;
-		if (s[i] != 0 && s[i] != c)
+		if (s[i] && s[i] != c)
 			words++;
 		while (s[i] && s[i] != c)
 			i++;
@@ -64,7 +63,7 @@ static void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (nmemb == 0 || size == 0)
 		size_allocation = 0;
-	else if (size > SIZE_MAX / nmemb)
+	else if (size > 2147483647 / nmemb)
 		return (0);
 	else
 		size_allocation = size * nmemb;
@@ -86,12 +85,14 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		j;
 
+	if (!s)
+		return (NULL);
 	split = (char **)ft_calloc(sizeof(char *), get_word_count(s, c));
 	if (!split)
 		return (0);
 	i = 0;
 	j = -1;
-	while (s[i] && i != -1)
+	while (s[i])
 	{
 		while (s[i] && s[i] == c)
 			i++;
