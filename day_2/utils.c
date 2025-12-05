@@ -3,35 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nop_o <nop_o@student.42.fr>                +#+  +:+       +#+        */
+/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:04 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/03 18:02:16 by nop_o            ###   ########.fr       */
+/*   Updated: 2025/12/05 17:39:59 by adamez-f         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+static int		get_possible_id_len(char *nbr, int len)
+{
+	int		j;
+
+	j = 1;
+	while (nbr[j] && (nbr[0] != nbr[j]))
+			j++;
+		if(j == len)
+			return (-1);
+	return (j);
+}
+
 int	is_id_invalid(unsigned long long nb)
 {
 	char	*nbr;
 	int		len;
+	int		len_nbr_id;
 	int		i;
+	int		j;
+
 
 	nbr = ft_itoa(nb);
 	len = ft_strlen(nbr);
-	if (len % 2 == 1)
-	{
-		free(nbr);
-		return (0);
-	}
+	if (len == 1)
+		return (1);
 	i = 0;
-	while (i < len / 2)
+	j = 0;
+	len_nbr_id = get_possible_id_len(nbr, len);
+	if (len_nbr_id == -1)
+		return (0);
+	while (i < len - len_nbr_id)
 	{
-		if (nbr[i] != nbr[(len / 2) + i])
+		j = len_nbr_id;
+		while (i + j < len)
 		{
-			free(nbr);
-			return (0);
+			if (nbr[i] != nbr[i + j])
+				return (0);
+			j += len_nbr_id;
 		}
 		i++;
 	}
