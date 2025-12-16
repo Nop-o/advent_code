@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   result.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:13:05 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/15 22:29:06 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/16 16:11:02 by adamez-f         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	lst_addback(t_list *new_node, t_list **list)
 	}
 }
 
-static long long	create_list(char **tab, t_list **list)
+static void	create_list(char **tab, t_list **list)
 {
 	t_list	*new_node;
 	int		tab_len;
@@ -37,7 +37,10 @@ static long long	create_list(char **tab, t_list **list)
 	{
 		new_node = malloc(sizeof(t_list));
 		if (!new_node)
-			return (-1);
+		{
+			
+			return ;
+		}
 		new_node->line = tab[tab_len];
 		new_node->nb = 0;
 		new_node->next = NULL;
@@ -97,16 +100,20 @@ long long	get_result(char **tab)
 	long long	result;
 	t_list		*new_list;
 
+	result = 0;
 	new_list = malloc(sizeof(t_list));
 	if (!new_list)
 		return (-1);
 	new_list->line = NULL;
 	new_list->nb = 0;
 	new_list->next = NULL;
-	printf("hello");
 	create_list(tab, &new_list);
-	printf("hello");
-	get_each_node_nb(&new_list);
-	result = add_all_node_nb(new_list);
+	while (new_list->line)
+	{
+		printf("%s\n", new_list->line);
+		new_list = new_list->next;
+	}
+	// get_each_node_nb(&new_list);
+	// result = add_all_node_nb(new_list);
 	return (result);
 }

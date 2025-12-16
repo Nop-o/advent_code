@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:04 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/15 22:22:31 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/16 16:11:06 by adamez-f         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,17 @@ char	**free_all(char **split)
 	free(split);
 	split = NULL;
 	return (split);
+}
+
+void	lst_clear(t_list **list)
+{
+	t_list	*previous_node;
+
+	while (*list)
+	{
+		previous_node = *list;
+		*list = (*list)->next;
+		free(previous_node->line);
+		free(previous_node);
+	}
 }
