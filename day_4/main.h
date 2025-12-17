@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:09:07 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/17 14:11:52 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 21:33:32 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@
 # define FILE "text.txt"
 # define PAPER_ROLL '@'
 //utils
-char			**free_all(char **split);
-
+char	**free_all(char **split);
 //parsing
-int				get_file_len(void);
-char			*get_file(int file_len);
-
+int		get_file_len(void);
+char	*get_file(int file_len);
 //split
-char			**ft_split(char const *s, char c);
-
+char	**ft_split(char const *s, char c);
 //result
-unsigned int	get_result(char **tab);
+void	get_result(char **tab, unsigned int *result);
 
 #endif

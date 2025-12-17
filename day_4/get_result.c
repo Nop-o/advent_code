@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:03:27 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/17 20:29:54 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 21:36:23 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,43 @@ static int	is_paper_roll_accesible(int x, int y, char **tab)
 	return (0);
 }
 
-unsigned int	get_result(char **board)
+//void	print_board(char **board)
+//{
+//	int	i;
+
+//	i = 0;
+//	printf("\n\n\n\n\n\n");
+//	while (board[i])
+//		printf("%s", board[i++]);
+//}
+
+void	get_result(char **board, unsigned int *result)
 {
-	unsigned int	result;
+	int				is_board_changed;
 	int				x;
 	int				y;
 
-	result = 0;
 	x = 0;
+	//print_board(board);
+	is_board_changed = 0;
 	while(board[x])
 	{
 		y = 0;
 		while (board[x][y])
 		{
 			if (board[x][y] == PAPER_ROLL)
+			{
 				if (is_paper_roll_accesible(x, y, board))
-					result++;
+				{
+					(*result)++;
+					board[x][y] = '.';
+					is_board_changed = 1;
+				}
+			}
 			y++;
 		}
 		x++;
 	}
-	return (result);
+	if (is_board_changed == 1)
+		get_result(board, result);
 }
