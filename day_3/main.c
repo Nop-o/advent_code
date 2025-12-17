@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:27 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/16 16:05:57 by adamez-f         ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 11:51:33 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(void)
 	char		*str;
 	char		**tab;
 
-	printf("hello");
 	len = get_file_len();
 	str = get_file(len);
 	tab = ft_split(str, '\n');
@@ -27,10 +26,7 @@ int	main(void)
 		return (-1);
 	result = get_result(tab);
 	printf("final result : %lli\n", result);
-	free_all(tab);
+	free(tab);
 	free(str);
 	return (0);
 }
-
-//675845380984350 mine
-//19605500130

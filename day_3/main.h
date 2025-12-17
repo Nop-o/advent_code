@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:09:07 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/16 16:11:19 by adamez-f         ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 11:53:01 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@
 typedef struct s_list
 {
 	char			*line;
-	int				nb;
+	long long		nb;
 	struct s_list	*next;
 }	t_list;
 
 //utils
 char		**free_all(char **split);
 void		lst_clear(t_list **list);
+long long	add_all_node_nb(t_list *list);
+
 //parsing
 int			get_file_len(void);
 char		*get_file(int file_len);

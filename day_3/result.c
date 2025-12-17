@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   result.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adamez-f <adamez-f@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:13:05 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/16 16:11:02 by adamez-f         ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 11:50:52 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	lst_addback(t_list *new_node, t_list **list)
+static t_list	*lst_addback(t_list *new_node, t_list **list)
 {
 	t_list	*last_node;
 
-	if (!list)
+	if (!*list || !list)
 		*list = new_node;
 	else
 	{
@@ -38,7 +38,7 @@ static void	create_list(char **tab, t_list **list)
 		new_node = malloc(sizeof(t_list));
 		if (!new_node)
 		{
-			
+			lst_clear(list);
 			return ;
 		}
 		new_node->line = tab[tab_len];
@@ -49,48 +49,33 @@ static void	create_list(char **tab, t_list **list)
 	}
 }
 
-static long	add_all_node_nb(t_list *list)
-{
-	long	return_value;
-
-	return_value = 0;
-	while (list)
-	{
-		return_value += list->nb;
-		list = list->next;
-	}
-	return (return_value);
-}
-
 static void	get_each_node_nb(t_list **list)
 {
 	t_list	*current_node;
-	char	first_digit;
-	char	second_digit;
-	int		first_digit_pos;
+	char	digit;
+	int		digit_pos;
 	int		line_pos;
 
 	current_node = *list;
 	while (current_node)
 	{
-		first_digit = '0';
+		digit = 0;
+		line_pos = 0;
 		while (current_node->line[line_pos])
 		{
-			if (current_node->line[line_pos] > first_digit && current_node->line[line_pos + 1])
+			if (current_node->line[line_pos] > digit && current_node->line[line_pos + 1])
 			{
-				first_digit = current_node->line[line_pos];
-				first_digit_pos = line_pos;
+				digit = current_node->line[line_pos];
+				digit_pos = line_pos;
 			}
 			line_pos++;
 		}
-		line_pos = first_digit_pos;
-		second_digit = '0';
-		while (current_node->line[++line_pos])
-		{
-			if (current_node->line[line_pos] > second_digit)
-				second_digit = current_node->line[line_pos];
-		}
-		current_node->nb = ((first_digit - '0') * 10) + (second_digit - '0');
+		current_node->nb = 10 * (digit - '0');
+		digit = 0;
+		while (current_node->line[++digit_pos])
+			if (current_node->line[digit_pos] > digit)
+				digit = current_node->line[digit_pos];
+		current_node->nb += (digit - '0');
 		current_node = current_node->next;
 	}
 }
@@ -101,19 +86,10 @@ long long	get_result(char **tab)
 	t_list		*new_list;
 
 	result = 0;
-	new_list = malloc(sizeof(t_list));
-	if (!new_list)
-		return (-1);
-	new_list->line = NULL;
-	new_list->nb = 0;
-	new_list->next = NULL;
+	new_list = NULL;
 	create_list(tab, &new_list);
-	while (new_list->line)
-	{
-		printf("%s\n", new_list->line);
-		new_list = new_list->next;
-	}
-	// get_each_node_nb(&new_list);
-	// result = add_all_node_nb(new_list);
+	get_each_node_nb(&new_list);
+	result = add_all_node_nb(new_list);
+	lst_clear(&new_list);
 	return (result);
 }
