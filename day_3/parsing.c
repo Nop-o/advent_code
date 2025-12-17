@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nop_o <nop_o@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:17 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/03 16:08:28 by nop_o            ###   ########.fr       */
+/*   Updated: 2025/12/17 12:58:02 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	fill_str(char *buffer, char **file)
 	j = 0;
 	while (buffer[j])
 		(*file)[i++] = buffer[j++];
-	(*file)[i] = '\0'; 
+	(*file)[i] = '\0';
 }
 
 int	get_file_len(void)

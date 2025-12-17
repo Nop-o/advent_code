@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:09:07 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/17 11:53:01 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 13:00:46 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <string.h>
 
-#define FILE "text.txt"
+# define FILE "text.txt"
 
 typedef struct s_list
 {
@@ -29,18 +29,22 @@ typedef struct s_list
 }	t_list;
 
 //utils
-char		**free_all(char **split);
-void		lst_clear(t_list **list);
-long long	add_all_node_nb(t_list *list);
+char				**free_all(char **split);
 
 //parsing
-int			get_file_len(void);
-char		*get_file(int file_len);
+int					get_file_len(void);
+char				*get_file(int file_len);
 
 //split
-char		**ft_split(char const *s, char c);
+char				**ft_split(char const *s, char c);
 
 //result
-long long	get_result(char **tab);
+unsigned long long	get_result(char **tab);
+
+//list_utils
+void				create_list(char **tab, t_list **list);
+t_list				*lst_addback(t_list *new_node, t_list **list);
+void				lst_clear(t_list **list);
+unsigned long long	add_all_node_nb(t_list *list);
 
 #endif
