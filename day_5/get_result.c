@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:03:27 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/21 20:16:36 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/21 22:58:51 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static unsigned int	find_result(t_int *id_range, unsigned long *int_id_to_check)
 	unsigned int	final_result;
 	t_int *			reset_list;
 	int				size_tab_ulong;
-	int				i;
 
 	size_tab_ulong = 1000;
 	final_result = 0;
