@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:09:07 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/21 23:33:41 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/24 17:10:53 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 //utils
 char				**free_all(char **split);
 void				free_matrice(char ***matrice);
-int					**free_all_int(int **split, int size);
+int					*free_all_int(int *split, int size);
 unsigned long		ft_atoi(char *nb);
 int					ft_isdigit(int c);
 //display

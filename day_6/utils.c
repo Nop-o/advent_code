@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:08:04 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/21 23:33:30 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/24 17:09:40 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**free_all(char **split)
 	return (NULL);
 }
 
-int	**free_all_int(int **split, int size)
+int	**free_all_int(int *split, int size)
 {
 	int	i;
 

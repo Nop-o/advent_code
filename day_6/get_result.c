@@ -6,7 +6,7 @@
 /*   By: nop_o <nop_o@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:03:27 by nop_o             #+#    #+#             */
-/*   Updated: 2025/12/21 23:34:17 by nop_o            ###   ########lyon.fr   */
+/*   Updated: 2025/12/24 17:10:35 by nop_o            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ static	int	*create_tab_int(char **tab)
 	return (return_value);
 }
 
-static int	**init_matrice(char ***matrice_str)
+static int	*init_matrice(char ***matrice_str)
 {
-	int		**matrice_int;
+	int		*tab_int;
 	int		i;
 
-	matrice_int = calloc(4, sizeof(int *));
-	if (!matrice_int)
+	tab_int = calloc(4, sizeof(int *));
+	if (!tab_int)
 		return (0);
 	i = -1;
 	while (++i < 4)
-		matrice_int[i] = create_tab_int(matrice_str[i]);
-	return (matrice_int);
+		tab_int[i] = create_tab_int(matrice_str[i]);
+	return (tab_int);
 }
 
 static unsigned long long	find_result(int **matrice, char **tab)
@@ -77,7 +77,7 @@ static unsigned long long	find_result(int **matrice, char **tab)
 
 unsigned long long	get_result(char **tab)
 {
-	int					**matrice_int;
+	int					*tab_int;
 	char				***matrice_str;
 	unsigned long long	return_value;
 
@@ -94,11 +94,11 @@ unsigned long long	get_result(char **tab)
 		free_matrice(matrice_str);
 		return (0);
 	}
-	matrice_int = init_matrice(matrice_str);
-	if (!matrice_int)
+	tab_int = init_matrice(matrice_str);
+	if (!tab_int)
 		return (0);
-	return_value = find_result(matrice_int, matrice_str[4]);
-	//free_matrice(matrice_str);
-	//free_all_int(matrice_int, 1000);
+	return_value = find_result(tab_int, matrice_str[4]);
+	free_matrice(matrice_str);
+	free_all_int(tab_int, 1000);
 	return (return_value);
 }
